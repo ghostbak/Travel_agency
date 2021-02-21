@@ -1,4 +1,4 @@
-package com.sda.projects.Travel_agency;
+package com.sda.projects.Travel_agency.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
