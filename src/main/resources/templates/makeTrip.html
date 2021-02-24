@@ -8,5 +8,20 @@
 </head>
 <body>
 
+<section class="add_trip">
+    <div class="container">
+        <form th:action="@{/makeTrip}" th:object="${trip}" method="post">
+            <tr>
+                <td>Cities</td>
+                <td><select name="cities">
+                    <option th:each="city:${cities}" th:value="${city.getId()}"
+                            th:text="${city.getName()}" value="">Skaaaa</option>
+                </select></td>
+            </tr>
+        </form>
+    </div>
+</section>
+
+<script src="js/bootstrap.js"></script>
 </body>
 </html>

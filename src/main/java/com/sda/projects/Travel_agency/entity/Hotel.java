@@ -14,6 +14,7 @@ public class Hotel {
     private int id;
     private String name;
     private byte standard;
+    @Column(columnDefinition="LONGTEXT")
     private String description;
 
     @ManyToOne
@@ -51,6 +52,7 @@ public class Hotel {
         this.standard = standard;
     }
 
+    @Column(columnDefinition="LONGTEXT")
     public String getDescription() {
         return description;
     }
