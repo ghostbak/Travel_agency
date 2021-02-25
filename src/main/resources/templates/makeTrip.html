@@ -11,13 +11,75 @@
 <section class="add_trip">
     <div class="container">
         <form th:action="@{/makeTrip}" th:object="${trip}" method="post">
-            <tr>
-                <td>Cities</td>
-                <td><select name="cities">
-                    <option th:each="city:${cities}" th:value="${city.getId()}"
-                            th:text="${city.getName()}" value="">Skaaaa</option>
-                </select></td>
-            </tr>
+
+            <label for="cityFrom">Cities from:</label>
+            <select th:field="*{cityFrom}">
+                <option th:each="city : ${cities}"
+                        th:value="${city.getId()}" th:text="${city.getName()}">Choose city</option>
+            </select><br>
+
+            <label for="airportFrom">Airport from:</label>
+            <select th:field="*{airportFrom}">
+                <option th:each="airport : ${airports}"
+                        th:value="${airport.getId()}" th:text="${airport.getName()}">Choose airport</option>
+            </select><br>
+
+            <label for="airportTo">Airport to:</label>
+            <select th:field="*{airportTo}">
+                <option th:each="airport : ${airports}"
+                        th:value="${airport.getId()}" th:text="${airport.getName()}">Choose airport</option>
+            </select><br>
+
+            <label for="hotelTo">Hotel to:</label>
+            <select th:field="*{hotelTo}">
+                <option th:each="hotel : ${hotels}"
+                        th:value="${hotel.getId()}" th:text="${hotel.getName()}">Choose hotel</option>
+            </select><br>
+
+            <label for="cityTo">Cities to:</label>
+            <select th:field="*{cityTo}">
+                <option th:each="city : ${cities}"
+                        th:value="${city.getId()}" th:text="${city.getName()}">Choose city</option>
+            </select><br>
+
+            <label for="date-started">Date started:</label>
+            <input type="date" th:value="${trip.departureDate}" th:field="${trip.departureDate}"
+                   id="date-started"/><br>
+
+            <label for="date-back">Date back:</label>
+            <input type="date" th:value="${trip.returnDate}" th:field="${trip.returnDate}"
+                   id="date-back"/><br>
+
+            <label for="numberOfDays">Number of days:</label>
+            <input type="text" th:field="*{numberOfDays}" th:placeholder="120max"/><br>
+
+            <label for="typeOfTrip">Choose typeOfTrip:</label>
+            <select th:field="*{typeOfTrip}">
+                <option th:each="types : ${T(com.sda.projects.Travel_agency.entity.TypeOfTrip).values()}"
+                        th:value="${types}" th:text="${types}">Choose typeOfTrip</option>
+            </select><br>
+
+            <label for="priceForAdult">Price for adult:</label>
+            <input type="text" th:field="*{priceForAdult}" th:placeholder="priceForAdult"/><br>
+
+            <label for="priceForChild">Price for child:</label>
+            <input type="text" th:field="*{priceForChild}" th:placeholder="priceForChild"/><br>
+
+            <label>Promoted:</label>
+            <label>
+                <input type="radio" th:field="*{promoted}" value="1" th:checked="*{promoted}"/>yes</label>
+
+            <label>
+                <input type="radio" th:field="*{promoted}" value="0" th:checked="*{promoted == false}"/>no</label><br>
+
+            <label for="numberOfBedsForAdults">Number of beds for adults:</label>
+            <input type="text" th:field="*{numberOfBedsForAdults}" th:placeholder="numberOfBedsForAdults"/><br>
+
+            <label for="numberOfBedsForChildren">Number of beds for children:</label>
+            <input type="text" th:field="*{numberOfBedsForChildren}" th:placeholder="numberOfBedsForChildren"/><br>
+
+            <input type="submit">
+
         </form>
     </div>
 </section>

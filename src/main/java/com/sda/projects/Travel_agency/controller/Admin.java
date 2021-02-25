@@ -3,11 +3,17 @@ package com.sda.projects.Travel_agency.controller;
 import com.sda.projects.Travel_agency.entity.*;
 import com.sda.projects.Travel_agency.repos.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Controller
 public class Admin {
@@ -29,6 +35,11 @@ public class Admin {
 
     @Autowired
     private HotelRepository hotelRepository;
+
+    /*@InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("dd-MMM-yyyy"), true));
+    }*/
 
     @GetMapping("/admin_home")
     public String viewAllTrips (Model model) {

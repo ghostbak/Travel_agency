@@ -2,6 +2,7 @@ package com.sda.projects.Travel_agency.entity;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -13,7 +14,9 @@ public class Trip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
     private Date departureDate;
+    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
     private Date returnDate;
     private short numberOfDays;
     private TypeOfTrip typeOfTrip;
@@ -46,12 +49,13 @@ public class Trip {
     public Trip() {
     }
 
-    public Trip(Date departureDate, Date returnDate,
+    public Trip(City cityFrom, Airport airportFrom,
+                Airport airportTo, Hotel hotelTo, City cityTo,
+                Date departureDate, Date returnDate,
                 short numberOfDays, TypeOfTrip typeOfTrip,
                 int priceForAdult, int priceForChild, boolean promoted,
-                byte numberOfBedsForAdults, byte numberOfBedsForChildren,
-                City cityFrom, Airport airportFrom, City cityTo,
-                Airport airportTo, Hotel hotelTo) {
+                byte numberOfBedsForAdults, byte numberOfBedsForChildren)
+    {
         this.departureDate = departureDate;
         this.returnDate = returnDate;
         this.numberOfDays = numberOfDays;
