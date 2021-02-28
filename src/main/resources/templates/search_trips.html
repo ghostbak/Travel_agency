@@ -3,6 +3,7 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>searchTrip</title>
     <link rel="stylesheet" href="css/makeTrip.css">
 </head>
@@ -26,6 +27,7 @@
                         <li class="nav-item">
                             <a class="nav-link" th:href="@{/makeTrip}">Administrator</a>
                         </li>
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -46,7 +48,7 @@
                 </optgroup>
             </select><br>
 
-            <input type="submit">
+            <input type="submit" value="Send">
 
         </form>
         <br>
@@ -64,7 +66,7 @@
                 </optgroup>
             </select><br>
 
-            <input type="submit">
+            <input type="submit" value="Send">
 
         </form>
     </div>

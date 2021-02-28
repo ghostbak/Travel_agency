@@ -3,6 +3,7 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>makeTrip</title>
     <link rel="stylesheet" href="css/makeTrip.min.css">
 </head>
@@ -128,7 +129,7 @@
             <label for="numberOfBedsForChildren">Number of beds for children:</label>
             <input type="text" th:field="*{numberOfBedsForChildren}" th:placeholder="numberOfBedsForChildren"/><br>
 
-            <input type="submit">
+            <input type="submit" value="Send">
 
         </form>
         <br>

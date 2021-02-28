@@ -24,19 +24,19 @@ gulp.task('styles', function() {
         .pipe(rename({suffix: '.min', prefix: ''}))
         .pipe(autoprefixer())
         .pipe(cleanCSS({compatibility: 'ie8'}))
-        .pipe(gulp.dest("static/css"))
+        .pipe(gulp.dest("../static/css"))
         .pipe(browserSync.stream());
 });
 
 gulp.task('sass', function () {
     return gulp.src("sass/**/*.+(scss|sass)")
       .pipe(sass().on('error', sass.logError))
-      .pipe(gulp.dest("static/css"));
+      .pipe(gulp.dest("../static/css"));
   });
 
 
 gulp.task('watch', function() {
-    gulp.watch("sass/**/*.+(scss|sass|css)", gulp.parallel('styles'));
+    gulp.watch("sass/**/*.+(scss|sass|css)", gulp.parallel('styles', 'sass'));
    // gulp.watch("src/*.html").on('change', gulp.parallel('html'));
 });
 
