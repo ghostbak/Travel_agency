@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>searchResult</title>
+    <link rel="stylesheet" href="css/makeTrip.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
+
+</head>
+<body>
+<section class="search_results">
+    <div class="container">
+        <table id="example">
+            <thead>
+            <tr>
+                <th>CityFrom</th>
+                <th>Hotel</th>
+                <th>description</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="trip : ${tripList}">
+                <td th:text="${trip.getCityFrom().getName()}">Red chair</td>
+                <td th:text="${trip.getHotelTo().getName()}">$350</td>
+                <td th:text="${trip.getNumberOfDays()}">28-Jun-2013</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+</script>
+</body>
+</html>

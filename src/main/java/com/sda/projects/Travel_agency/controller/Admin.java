@@ -3,17 +3,19 @@ package com.sda.projects.Travel_agency.controller;
 import com.sda.projects.Travel_agency.entity.*;
 import com.sda.projects.Travel_agency.repos.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 
 @Controller
 public class Admin {
@@ -36,11 +38,6 @@ public class Admin {
     @Autowired
     private HotelRepository hotelRepository;
 
-    /*@InitBinder
-    public void initBinder(WebDataBinder binder) {
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("dd-MMM-yyyy"), true));
-    }*/
-
     @GetMapping("/admin_home")
     public String viewAllTrips (Model model) {
     Iterable<Trip> trips = tripRepository.findAll();
@@ -52,18 +49,34 @@ public class Admin {
     public String makeTrip (Model model) {
 
     Trip trip = new Trip();
-    Iterable<Continent> continents = continentRepository.findAll();
     Iterable<Country> countries = countryRepository.findAll();
     Iterable<City> cities = cityRepository.findAll();
-    Iterable<Airport> airports = airportRepository.findAll();
-    Iterable<Hotel> hotels = hotelRepository.findAll();
+
+        List<Country> countryList = StreamSupport.stream(countries.spliterator(), false)
+                .collect(Collectors.toList());
+        List<City> cityList = StreamSupport.stream(cities.spliterator(), false)
+                .collect(Collectors.toList());;
+
+    Map<String, List<City>> countriesMap = new HashMap<>();
+    Map<String, List<Airport>> airportMap = new HashMap<>();
+    Map<String, List<Hotel>> hotelMap = new HashMap<>();
+
+        for (Country country : countryList) {
+            countriesMap.put(country.getName(), country.getCityList());
+        }
+
+        for (City city : cityList) {
+            airportMap.put(city.getName(), city.getAirportList());
+        }
+
+        for (City city : cityList) {
+            hotelMap.put(city.getName(), city.getHotelList());
+        }
 
     model.addAttribute("trip", trip);
-    model.addAttribute("continents", continents);
-    model.addAttribute("countries", countries);
-    model.addAttribute("cities", cities);
-    model.addAttribute("airports", airports);
-    model.addAttribute("hotels", hotels);
+    model.addAttribute("countriesMap", countriesMap);
+    model.addAttribute("airportMap", airportMap);
+    model.addAttribute("hotelMap", hotelMap);
 
         return "makeTrip";
     }

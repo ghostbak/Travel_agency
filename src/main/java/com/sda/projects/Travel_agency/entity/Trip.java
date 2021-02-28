@@ -20,8 +20,8 @@ public class Trip {
     private Date returnDate;
     private short numberOfDays;
     private TypeOfTrip typeOfTrip;
-    private int priceForAdult;
-    private int priceForChild;
+    private float priceForAdult;
+    private float priceForChild;
     private boolean promoted;
     private byte numberOfBedsForAdults;
     private byte numberOfBedsForChildren;
@@ -112,7 +112,7 @@ public class Trip {
         this.typeOfTrip = typeOfTrip;
     }
 
-    public int getPriceForAdult() {
+    public float getPriceForAdult() {
         return priceForAdult;
     }
 
@@ -120,7 +120,7 @@ public class Trip {
         this.priceForAdult = priceForAdult;
     }
 
-    public int getPriceForChild() {
+    public float getPriceForChild() {
         return priceForChild;
     }
 
@@ -199,4 +199,5 @@ public class Trip {
     public void setPurchaseList(List<Purchase> purchaseList) {
         this.purchaseList = purchaseList;
     }
+
 }

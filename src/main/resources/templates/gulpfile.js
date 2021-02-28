@@ -24,14 +24,14 @@ gulp.task('styles', function() {
         .pipe(rename({suffix: '.min', prefix: ''}))
         .pipe(autoprefixer())
         .pipe(cleanCSS({compatibility: 'ie8'}))
-        .pipe(gulp.dest("css"))
+        .pipe(gulp.dest("static/css"))
         .pipe(browserSync.stream());
 });
 
 gulp.task('sass', function () {
     return gulp.src("sass/**/*.+(scss|sass)")
       .pipe(sass().on('error', sass.logError))
-      .pipe(gulp.dest("css"));
+      .pipe(gulp.dest("static/css"));
   });
 
 

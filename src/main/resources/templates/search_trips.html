@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>searchTrip</title>
+</head>
+<body>
+
+<section class="search_trip">
+    <div class="container">
+        <form th:action="@{/search_trips}" th:object="${trip}" method="post">
+
+            <label for="hotelTo">Hotel to:</label>
+            <select th:field="*{hotelTo}">
+                <optgroup th:each="hotel : ${hotelMap}"
+                          th:label="${hotel.getKey()}">
+                    <option th:each="hoteltValue : ${hotel.getValue()}"
+                            th:value="${hoteltValue.getId()}"
+                            th:text="${hoteltValue.getName()}">
+                    </option>
+                </optgroup>
+            </select><br>
+
+            <input type="submit">
+
+        </form>
+        <br>
+
+        <form th:action="@{/search_trips2}" th:object="${trip}" method="post">
+
+            <label for="cityTo">City to:</label>
+            <select th:field="*{cityTo}">
+                <optgroup th:each="pairForCountries : ${countriesMap}"
+                          th:label="${pairForCountries.getKey()}">
+                    <option th:each="countryValue : ${pairForCountries.getValue()}"
+                            th:value="${countryValue.getId()}"
+                            th:text="${countryValue.getName()}">
+                    </option>
+                </optgroup>
+            </select><br>
+
+            <input type="submit">
+
+        </form>
+    </div>
+</section>
+
+</body>
+</html>

@@ -3,8 +3,8 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="css/makeTrip.min.css">
+    <title>makeTrip</title>
+    <link rel="stylesheet" href="../static/css/makeTrip.min.css">
 </head>
 <body>
 
@@ -12,35 +12,62 @@
     <div class="container">
         <form th:action="@{/makeTrip}" th:object="${trip}" method="post">
 
-            <label for="cityFrom">Cities from:</label>
-            <select th:field="*{cityFrom}">
-                <option th:each="city : ${cities}"
-                        th:value="${city.getId()}" th:text="${city.getName()}">Choose city</option>
-            </select><br>
+            <label for="cityFrom">City from:</label>
+                <select th:field="*{cityFrom}">
+                    <optgroup th:each="pairForCountries : ${countriesMap}"
+                              th:label="${pairForCountries.getKey()}">
+                        <option th:each="countryValue : ${pairForCountries.getValue()}"
+                                th:value="${countryValue.getId()}"
+                                th:text="${countryValue.getName()}">
+                        </option>
+                    </optgroup>
+                </select>
+            <br>
 
             <label for="airportFrom">Airport from:</label>
             <select th:field="*{airportFrom}">
-                <option th:each="airport : ${airports}"
-                        th:value="${airport.getId()}" th:text="${airport.getName()}">Choose airport</option>
+                <optgroup th:each="airport : ${airportMap}"
+                          th:label="${airport.getKey()}">
+                    <option th:each="airportValue : ${airport.getValue()}"
+                            th:value="${airportValue.getId()}"
+                            th:text="${airportValue.getName()}">
+                    </option>
+                </optgroup>
+            </select><br>
+
+            <label for="cityTo">City to:</label>
+            <select th:field="*{cityTo}">
+                <optgroup th:each="pairForCountries : ${countriesMap}"
+                          th:label="${pairForCountries.getKey()}">
+                    <option th:each="countryValue : ${pairForCountries.getValue()}"
+                            th:value="${countryValue.getId()}"
+                            th:text="${countryValue.getName()}">
+                    </option>
+                </optgroup>
             </select><br>
 
             <label for="airportTo">Airport to:</label>
             <select th:field="*{airportTo}">
-                <option th:each="airport : ${airports}"
-                        th:value="${airport.getId()}" th:text="${airport.getName()}">Choose airport</option>
+                <optgroup th:each="airport : ${airportMap}"
+                          th:label="${airport.getKey()}">
+                    <option th:each="airportValue : ${airport.getValue()}"
+                            th:value="${airportValue.getId()}"
+                            th:text="${airportValue.getName()}">
+                    </option>
+                </optgroup>
             </select><br>
 
             <label for="hotelTo">Hotel to:</label>
             <select th:field="*{hotelTo}">
-                <option th:each="hotel : ${hotels}"
-                        th:value="${hotel.getId()}" th:text="${hotel.getName()}">Choose hotel</option>
+                <optgroup th:each="hotel : ${hotelMap}"
+                          th:label="${hotel.getKey()}">
+                    <option th:each="hoteltValue : ${hotel.getValue()}"
+                            th:value="${hoteltValue.getId()}"
+                            th:text="${hoteltValue.getName()}">
+                    </option>
+                </optgroup>
             </select><br>
 
-            <label for="cityTo">Cities to:</label>
-            <select th:field="*{cityTo}">
-                <option th:each="city : ${cities}"
-                        th:value="${city.getId()}" th:text="${city.getName()}">Choose city</option>
-            </select><br>
 
             <label for="date-started">Date started:</label>
             <input type="date" th:value="${trip.departureDate}" th:field="${trip.departureDate}"
@@ -84,6 +111,6 @@
     </div>
 </section>
 
-<script src="js/bootstrap.js"></script>
+<script src="../static/js/bootstrap.js"></script>
 </body>
 </html>

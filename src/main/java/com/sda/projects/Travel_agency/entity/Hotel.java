@@ -68,4 +68,12 @@ public class Hotel {
     public void setCity(City city) {
         this.city = city;
     }
+
+    public List<Trip> getTripListTo() {
+        return tripListTo;
+    }
+
+    public void setTripListTo(List<Trip> tripListTo) {
+        this.tripListTo = tripListTo;
+    }
 }
