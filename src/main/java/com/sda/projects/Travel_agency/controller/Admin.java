@@ -84,7 +84,7 @@ public class Admin {
     @PostMapping("/makeTrip")
     public String saveTrip (@ModelAttribute("trip") Trip trip) {
         tripRepository.save(trip);
-        return "redirect:/admin_home";
+        return "makeTrip";
     }
 
 

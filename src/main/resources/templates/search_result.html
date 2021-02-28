@@ -9,12 +9,37 @@
 
 </head>
 <body>
+<header>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Travel Agency</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" th:href="@{/search_trips}">Trips search</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" th:href="@{/}">home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/makeTrip}">Administrator</a>
+                        </li>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
 <section class="search_results">
     <div class="container">
         <table id="example">
             <thead>
             <tr>
                 <th>CityFrom</th>
+                <th>AirportFrom</th>
                 <th>Hotel</th>
                 <th>description</th>
             </tr>
@@ -22,6 +47,7 @@
             <tbody>
             <tr th:each="trip : ${tripList}">
                 <td th:text="${trip.getCityFrom().getName()}">Red chair</td>
+                <td th:text="${trip.getAirportFrom().getName()}">Red chair</td>
                 <td th:text="${trip.getHotelTo().getName()}">$350</td>
                 <td th:text="${trip.getNumberOfDays()}">28-Jun-2013</td>
             </tr>
