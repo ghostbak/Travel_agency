@@ -39,7 +39,7 @@
                 <div class="promoted_block">
                     <span th:text="${trip.getCityTo().getCountry().getName()}">Tunis</span>
                     <span th:text="${trip.getHotelTo().getName()}">Mamba_hotel</span>
-                    <span th:text="${trip.getNumberOfDays()}">5</span><button>buy</button>
+                    <span style="color: #a71d2a" th:text="${trip.getNumberOfDays() + ' Days'}">5</span><button>buy</button>
                 </div>
             </div>
         </div>
